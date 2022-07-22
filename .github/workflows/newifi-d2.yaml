@@ -21,7 +21,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt for CM520
+name: Build Lean LEDE for Newifi D2
 
 on:
   workflow_dispatch:
@@ -34,17 +34,17 @@ on:
         description: "SSH connection to Actions"
         required: false
         default: "false"
-#  schedule:
-#    - cron: 0 */18 * * *
+  # schedule:
+  #   - cron: 0 */18 * * *
 
 env:
-  REPO_NAME: openwrt
-  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_NAME: lean-lede
+  REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  FEEDS_CONF: cm520-openwrt-feeds.conf.default
-  CONFIG_FILE: cm520-openwrt.config
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
+  FEEDS_CONF: newifi-d2.conf.default
+  CONFIG_FILE: newifi-d2.config
+  DIY_P1_SH: lean-lede-diy-part1.sh
+  DIY_P2_SH: lean-lede-diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -133,7 +133,7 @@ jobs:
 
       - name: SSH connection to Actions
         uses: P3TERX/ssh2actions@v1.0.0
-        if: github.event.inputs.ssh == 'true' || contains(github.event.action, 'ssh')
+        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
         env:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -222,7 +222,7 @@ jobs:
           files: ${{ env.FIRMWARE }}/*
 
   clean:
-    name: Clean old assets
+    name: Clean up old assets
     runs-on: ubuntu-20.04
     permissions:
       actions: write
