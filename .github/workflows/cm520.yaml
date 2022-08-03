@@ -21,7 +21,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build Lean LEDE for Newifi D2
+name: Build Lean LEDE for CM520
 
 on:
   workflow_dispatch:
@@ -41,14 +41,14 @@ env:
   REPO_NAME: lean-lede
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  FEEDS_CONF: newifi-d2.conf.default
-  CONFIG_FILE: newifi-d2.config
+  FEEDS_CONF: cm520.conf.default
+  CONFIG_FILE: cm520.config
   DIY_P1_SH: lean-lede-diy-part1.sh
   DIY_P2_SH: lean-lede-diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
-  UPLOAD_WETRANSFER: true
+  UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
