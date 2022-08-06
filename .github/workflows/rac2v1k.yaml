@@ -21,7 +21,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build Lean LEDE for CM520
+name: Build Lean LEDE for RAC2V1K
 
 on:
   workflow_dispatch:
@@ -41,8 +41,8 @@ env:
   REPO_NAME: lean-lede
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  FEEDS_CONF: cm520.conf.default
-  CONFIG_FILE: cm520.config
+  FEEDS_CONF: rac2v1k.conf.default
+  CONFIG_FILE: rac2v1k.config
   DIY_P1_SH: lean-lede-diy-part1.sh
   DIY_P2_SH: lean-lede-diy-part2.sh
   UPLOAD_BIN_DIR: false
